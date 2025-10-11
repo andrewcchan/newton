@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinematics Equations</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Newton's Equations of Kinematics</h1>
+    </header>
+    <main>
+        <section>
+            <h2>The Five Kinematic Equations</h2>
+            <p>These equations describe the motion of an object with constant acceleration.</p>
+            <div class="equation">
+                <h3>Equation 1: Solve for Final Velocity (v)</h3>
+                <p>v = v₀ + at</p>
+                <div class="calculator">
+                    <input type="number" id="v0_1" placeholder="Initial Velocity (v₀)">
+                    <input type="number" id="a_1" placeholder="Acceleration (a)">
+                    <input type="number" id="t_1" placeholder="Time (t)">
+                    <button onclick="calculateEquation1()">Calculate</button>
+                    <p>Result: v = <span id="result_1"></span></p>
+                </div>
+            </div>
+            <div class="equation">
+                <h3>Equation 2: Solve for Displacement (Δx)</h3>
+                <p>Δx = v₀t + ½at²</p>
+                <div class="calculator">
+                    <input type="number" id="v0_2" placeholder="Initial Velocity (v₀)">
+                    <input type="number" id="t_2" placeholder="Time (t)">
+                    <input type="number" id="a_2" placeholder="Acceleration (a)">
+                    <button onclick="calculateEquation2()">Calculate</button>
+                    <p>Result: Δx = <span id="result_2"></span></p>
+                </div>
+            </div>
+            <div class="equation">
+                <h3>Equation 3: Solve for Final Velocity (v)</h3>
+                <p>v² = v₀² + 2aΔx</p>
+                <div class="calculator">
+                    <input type="number" id="v0_3" placeholder="Initial Velocity (v₀)">
+                    <input type="number" id="a_3" placeholder="Acceleration (a)">
+                    <input type="number" id="dx_3" placeholder="Displacement (Δx)">
+                    <button onclick="calculateEquation3()">Calculate</button>
+                    <p>Result: v = <span id="result_3"></span></p>
+                </div>
+            </div>
+            <div class="equation">
+                <h3>Equation 4: Solve for Displacement (Δx)</h3>
+                <p>Δx = ½(v₀ + v)t</p>
+                <div class="calculator">
+                    <input type="number" id="v0_4" placeholder="Initial Velocity (v₀)">
+                    <input type="number" id="v_4" placeholder="Final Velocity (v)">
+                    <input type="number" id="t_4" placeholder="Time (t)">
+                    <button onclick="calculateEquation4()">Calculate</button>
+                    <p>Result: Δx = <span id="result_4"></span></p>
+                </div>
+            </div>
+            <div class="equation">
+                <h3>Equation 5: Solve for Displacement (Δx)</h3>
+                <p>Δx = vt - ½at²</p>
+                <div class="calculator">
+                    <input type="number" id="v_5" placeholder="Final Velocity (v)">
+                    <input type="number" id="t_5" placeholder="Time (t)">
+                    <input type="number" id="a_5" placeholder="Acceleration (a)">
+                    <button onclick="calculateEquation5()">Calculate</button>
+                    <p>Result: Δx = <span id="result_5"></span></p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
