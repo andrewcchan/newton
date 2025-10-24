@@ -1,6 +1,8 @@
 import streamlit as st
 import streamlit.components.v1 as components
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
