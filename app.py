@@ -25,12 +25,22 @@ def calculate():
     vx_t = np.full_like(t, v_x)
     vy_t = v_y - g * t
 
+    # Calculate angle vector for visualization
+    max_range = np.max(x) if len(x) > 0 else 1
+    vector_len = max_range * 0.1 # 10% of the max range
+    angle_vector_x = [0, vector_len * np.cos(angle_rad)]
+    angle_vector_y = [0, vector_len * np.sin(angle_rad)]
+
     return jsonify({
         't': t.tolist(),
         'x': x.tolist(),
         'y': y.tolist(),
         'vx_t': vx_t.tolist(),
-        'vy_t': vy_t.tolist()
+        'vy_t': vy_t.tolist(),
+        'angle_vector': {
+            'x': angle_vector_x,
+            'y': angle_vector_y
+        }
     })
 
 if __name__ == '__main__':
