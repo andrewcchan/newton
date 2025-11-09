@@ -1,0 +1,22 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.controls {
+    margin-bottom: 2rem;
+}
+
+.simulation {
+    width: 80%;
+    max-width: 800px;
+}
+
+.message {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
