@@ -7,6 +7,16 @@ class Simulation:
     def run(self, velocity, angle, gravity):
         angle_rad = np.deg2rad(angle)
 
+        # Handle zero gravity edge case
+        if np.isclose(gravity, 0):
+            t = np.linspace(0, 10, num=100) # Fly for 10 seconds
+            x = velocity * np.cos(angle_rad) * t
+            y = velocity * np.sin(angle_rad) * t
+            return {
+                "x": x.tolist(), "y": y.tolist(),
+                "hit": False, "target": self.target
+            }
+
         t_flight = 2 * velocity * np.sin(angle_rad) / gravity
         t = np.linspace(0, t_flight, num=100)
 

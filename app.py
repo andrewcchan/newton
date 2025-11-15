@@ -19,13 +19,19 @@ def index():
 
 @app.route('/simulate', methods=['POST'])
 def simulate():
-    velocity = float(request.json['velocity'])
-    angle = float(request.json['angle'])
-    gravity = float(request.json['gravity'])
+    try:
+        velocity = float(request.json['velocity'])
+        angle = float(request.json['angle'])
+        gravity = float(request.json['gravity'])
 
-    result = simulation_env.run(velocity, angle, gravity)
+        if velocity <= 0 or angle < 0 or angle > 90 or gravity < 0:
+            raise ValueError("Invalid simulation parameters.")
 
-    return jsonify(result)
+        result = simulation_env.run(velocity, angle, gravity)
+        return jsonify(result)
+
+    except (KeyError, ValueError) as e:
+        return jsonify({"error": str(e)}), 400
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=False)
