@@ -1,5 +1,7 @@
 from flask import Flask, render_template, jsonify, request
 from simulation import Simulation
+from rl_agent import RLAgent
+import numpy as np
 import random
 
 app = Flask(__name__)
@@ -12,6 +14,18 @@ TARGET = {
 }
 
 simulation_env = Simulation(TARGET)
+
+# --- RL Agent Setup ---
+agent = RLAgent(simulation_env)
+try:
+    agent.q_table = np.load("q_table.npy", allow_pickle=True)
+    agent.epsilon = 0.0 # pure exploitation
+    print("--- Q-table loaded successfully. ---")
+except FileNotFoundError:
+    print("--- WARNING: q_table.npy not found. The agent is not trained. ---")
+    # Handle the case where the Q-table doesn't exist, maybe disable the AI feature?
+    # For now, the agent will be untrained.
+    pass
 
 @app.route('/')
 def index():
@@ -27,6 +41,25 @@ def simulate():
         if velocity <= 0 or angle < 0 or angle > 90 or gravity < 0:
             raise ValueError("Invalid simulation parameters.")
 
+        result = simulation_env.run(velocity, angle, gravity)
+        return jsonify(result)
+
+    except (KeyError, ValueError) as e:
+        return jsonify({"error": str(e)}), 400
+
+@app.route('/solve', methods=['POST'])
+def solve():
+    try:
+        gravity = float(request.json['gravity'])
+        if gravity < 0:
+            raise ValueError("Invalid gravity value.")
+
+        # Use the agent to find the best action
+        state = agent.get_state(gravity)
+        action = agent.choose_action(state)
+        velocity, angle = agent.get_action_values(action)
+
+        # Run the simulation with the agent's chosen parameters
         result = simulation_env.run(velocity, angle, gravity)
         return jsonify(result)
 
