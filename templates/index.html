@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projectile Motion Lab</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Projectile Motion Lab</h1>
+            <p>Learn kinematics by simulating projectile motion.</p>
+        </header>
+
+        <main>
+            <div class="controls">
+                <div class="input-group">
+                    <label for="velocity">Initial Velocity (\(v_0\)) [m/s]:</label>
+                    <input type="number" id="velocity" value="50" min="0" step="1">
+                </div>
+                <div class="input-group">
+                    <label for="angle">Angle (\(\theta\)) [degrees]:</label>
+                    <input type="number" id="angle" value="45" min="0" max="90" step="1">
+                </div>
+                <button id="simulate-btn">Fire!</button>
+            </div>
+
+            <div class="visualization">
+                <canvas id="motionChart"></canvas>
+            </div>
+
+            <div class="educational-content">
+                <h2>The Physics Behind It</h2>
+                <div class="formula-box">
+                    <p><strong>Horizontal Motion:</strong> \(x(t) = v_0 \cdot \cos(\theta) \cdot t\)</p>
+                    <p><strong>Vertical Motion:</strong> \(y(t) = v_0 \cdot \sin(\theta) \cdot t - \frac{1}{2} g t^2\)</p>
+                </div>
+                <p>where:</p>
+                <ul>
+                    <li>\(v_0\) is the initial velocity</li>
+                    <li>\(\theta\) is the launch angle</li>
+                    <li>\(g\) is the acceleration due to gravity (\(9.81 m/s^2\))</li>
+                    <li>\(t\) is time</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <!-- MathJax for rendering equations -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>
