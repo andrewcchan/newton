@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projectile Simulation</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Projectile Simulation</h1>
+    <div class="controls">
+        <label for="velocity">Velocity (m/s):</label>
+        <input type="number" id="velocity" value="20">
+        <label for="angle">Angle (degrees):</label>
+        <input type="number" id="angle" value="45">
+        <button id="launch">Launch</button>
+        {% if ai_enabled %}
+        <button id="solve">Let the AI Solve</button>
+        {% else %}
+        <button id="solve" disabled title="AI model not loaded">Let the AI Solve</button>
+        {% endif %}
+    </div>
+    <div class="simulation">
+        <canvas id="trajectoryChart"></canvas>
+    </div>
+    <div id="message" class="message"></div>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
